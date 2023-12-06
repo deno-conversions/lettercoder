@@ -1,12 +1,14 @@
-import { toByteArray } from 'base64-js';
+import { decodeBase64 as toByteArray } from 'https://deno.land/std@0.208.0/encoding/base64.ts';
 
 if (typeof TextDecoder === 'undefined') {
+  // @ts-ignore Isomorphism (Deno-specific).
   const nodeVer = typeof process !== 'undefined' && process.versions?.node;
   const nodeRequire = nodeVer
     ? // @ts-ignore Isomorphism.
       typeof __webpack_require__ === 'function'
       ? // @ts-ignore Isomorphism.
         __non_webpack_require__
+      // @ts-ignore Isomorphism (Deno-specific).
       : require
     : undefined;
   // @ts-ignore Isomorphism.
